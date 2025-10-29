@@ -8,10 +8,14 @@ os.makedirs(INSTANCE_DIR, exist_ok=True)
 class Config:
 
     SECRET_KEY = os.environ.get("SECRET_KEY", "dev_secret_key")
-    SQLALCHEMY_DATABASE_URI = os.environ.get(
-        "DATABASE_URL",
-        f"sqlite:///{os.path.join(INSTANCE_DIR, 'eco_collect.db')}"
-    )
+    # normalize DATABASE_URL for SQLAlchemy
+    _database_url = os.environ.get("DATABASE_URL")
+    if _database_url and _database_url.startswith("postgres://"):
+        _database_url = _database_url.replace("postgres://", "postgresql://", 1)
+
+    SQLALCHEMY_DATABASE_URI = _database_url or f"sqlite:///{os.path.join(INSTANCE_DIR, 'eco_collect.db')}"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    ...
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "dev_jwt_secret")
