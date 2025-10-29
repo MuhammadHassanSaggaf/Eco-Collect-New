@@ -20,7 +20,7 @@ class Config:
     COOKIE_SAMESITE = os.environ.get("COOKIE_SAMESITE", "Lax")
     ACCESS_TOKEN_EXPIRES = int(os.environ.get("ACCESS_TOKEN_EXPIRES", 3600))  # 1 hour
 
-    CORS_ORIGINS = os.environ.get("CORS_ORIGINS", "http://localhost:3000")
+    CORS_ORIGINS = os.environ.get("CORS_ORIGINS", "https://eco-collect-ke-vbwd.vercel.app/")
     MAX_CONTENT_LENGTH = 10 * 1024 * 1024  # 10 MB (for JSON / image uploads)
     JSON_AS_ASCII = False  # Ensure UTF-8 encoding
     JSON_SORT_KEYS = False  # Keep response fields in readable order
