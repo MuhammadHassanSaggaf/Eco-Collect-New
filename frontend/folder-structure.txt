@@ -1,0 +1,62 @@
+.
+├── folder-structure.txt
+├── jsconfig.json
+├── next.config.mjs
+├── package.json
+├── package-lock.json
+├── public
+│   ├── auth.svg
+│   ├── auth.svg:Zone.Identifier
+│   ├── avatar.png
+│   ├── bg.svg
+│   ├── bg.svg:Zone.Identifier
+│   ├── bus-logo.svg
+│   ├── cyprian.svg
+│   ├── cyprian.svg:Zone.Identifier
+│   ├── Mail sent-bro (1).svg:Zone.Identifier
+│   ├── saggaf.svg
+│   ├── saggaf.svg:Zone.Identifier
+│   ├── services.svg
+│   ├── services.svg:Zone.Identifier
+│   ├── user (1).png:Zone.Identifier
+│   ├── vivian.svg
+│   └── vivian.svg:Zone.Identifier
+├── src
+│   ├── app
+│   │   ├── auth
+│   │   │   └── page.js
+│   │   ├── civilian
+│   │   │   └── page.js
+│   │   ├── corporative
+│   │   │   └── page.js
+│   │   ├── favico.svg
+│   │   ├── forgetpassword
+│   │   │   └── page.js
+│   │   ├── globals.css
+│   │   ├── layout.js
+│   │   ├── Logo.svg
+│   │   ├── page.js
+│   │   └── resetpassword
+│   │       └── page.js
+│   ├── components
+│   │   ├── Analytics.jsx
+│   │   ├── CivilianCenters.jsx
+│   │   ├── CivilianNavBar.jsx
+│   │   ├── CorporativeCenters.jsx
+│   │   ├── CorporativeNavBar.jsx
+│   │   ├── History.jsx
+│   │   ├── Profile.jsx
+│   │   ├── Upload.jsx
+│   │   └── Verification.jsx
+│   ├── context
+│   │   └── AuthContext.jsx
+│   ├── hooks
+│   │   └── useAuth.js
+│   └── lib
+│       ├── api.js
+│       ├── apiService.js
+│       ├── centers.js
+│       └── user.js
+└── tailwind.config.js
+
+13 directories, 47 files
