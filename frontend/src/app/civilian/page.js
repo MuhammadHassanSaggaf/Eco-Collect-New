@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Logo from "@app/Logo.svg";
 import Nav from "@components/CivilianNavBar";
 import { getCurrentUser, logout } from "@lib/user";
+import { Upload } from "lucide-react";
 
 export default function CivilianPage() {
   const [user, setUser] = React.useState(null);
@@ -77,6 +78,7 @@ export default function CivilianPage() {
       {/* Main Content */}
       <div className="mainContentArea flex flex-col items-center justify-start w-full h-[676px] bg-[#FFFFFF]">
         <Nav />
+        <Upload/>
       </div>
     </div>
   );
