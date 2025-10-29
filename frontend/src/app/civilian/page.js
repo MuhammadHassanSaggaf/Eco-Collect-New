@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Logo from "@app/Logo.svg";
-import Nav from "@components/components/CivilianNavBar";
+import Nav from "@components/CivilianNavBar";
 import { getCurrentUser, logout } from "@lib/user";
 
 export default function CivilianPage() {
