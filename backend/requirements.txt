@@ -50,4 +50,4 @@ Pillow==11.1.0
 scikit-learn==1.6.1
 Flask-Bcrypt==1.0.1
 transformers==4.35.0
-torch==2.3.0
+torch==2.9.0
