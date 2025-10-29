@@ -35,10 +35,10 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     COOKIE_SECURE = False
-    CORS_ORIGINS = os.environ.get("CORS_ORIGINS", "http://localhost:3000")
+    CORS_ORIGINS = os.environ.get("CORS_ORIGINS", "https://eco-collect-ke-vbwd.vercel.app/")
 
 
 class ProductionConfig(Config):
     DEBUG = False
     COOKIE_SECURE = True
-    CORS_ORIGINS = os.environ.get("CORS_ORIGINS", "https://yourdomain.com")
+    CORS_ORIGINS = os.environ.get("CORS_ORIGINS", "https://eco-collect-ke-vbwd.vercel.app/")
