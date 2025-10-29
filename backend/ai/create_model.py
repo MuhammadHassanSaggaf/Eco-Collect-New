@@ -1,22 +1,37 @@
-from transformers import AutoProcessor, AutoModelForImageClassification
-from PIL import Image
-import torch
+from huggingface_hub import InferenceClient
+import os
 
-# 🔧 Change this:
-# model_name = "belab/waste-classification"
-# To this:
-model_name = "microsoft/resnet-50"
+# ✅ Get your Hugging Face token from environment variable (safer)
+# Add it in Render → Dashboard → Environment → Add "HF_TOKEN"
+HF_TOKEN = os.getenv("HF_TOKEN")
 
-# Load pretrained model + processor
-processor = AutoProcessor.from_pretrained(model_name)
-model = AutoModelForImageClassification.from_pretrained(model_name)
+# Use a lightweight, general-purpose image classification model
+MODEL_NAME = "microsoft/resnet-50"
+
+# Initialize the inference client
+client = InferenceClient(model=MODEL_NAME, token=HF_TOKEN)
 
 def predict(image_path):
-    image = Image.open(image_path).convert("RGB")
-    inputs = processor(images=image, return_tensors="pt")
-    outputs = model(**inputs)
-    logits = outputs.logits
-    predicted_class_idx = logits.argmax(-1).item()
-    label = model.config.id2label[predicted_class_idx]
-    confidence = torch.softmax(logits, dim=-1)[0][predicted_class_idx].item()
-    return {"category": label, "confidence": confidence}
+    """
+    Sends the image to Hugging Face Inference API and returns the predicted label + confidence.
+    """
+    with open(image_path, "rb") as f:
+        image_bytes = f.read()
+
+    # Send request to model
+    response = client.post(
+        json=None,
+        data=image_bytes,
+        headers={"Content-Type": "image/jpeg"}
+    )
+
+    # The API returns a list of predictions with 'label' and 'score'
+    # Example: [{'label': 'recycling_bin', 'score': 0.97}]
+    if isinstance(response, list) and len(response) > 0:
+        top = response[0]
+        return {
+            "category": top.get("label", "Unknown"),
+            "confidence": round(top.get("score", 0) * 100, 2)
+        }
+    else:
+        return {"category": "Unknown", "confidence": 0.0}
